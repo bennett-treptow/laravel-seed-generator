@@ -11,7 +11,7 @@ class SeedClassResolverTest extends TestCase {
         $resolver = new SeedClassResolver(TestModel::class);
 
         $builder = $resolver->builder();
-        $this->assertEquals('select * fom "test_models"', $builder->toSql());
+        $this->assertEquals('select * from "test_models"', $builder->toSql());
     }
 
     public function test_it_resolves_class_with_select(){

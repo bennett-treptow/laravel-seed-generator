@@ -7,4 +7,7 @@ use LaravelSeedGenerator\Traits\Seedable;
 
 class TestModel extends Model implements SeedableContract {
     use Seedable;
+
+    public $timestamps = false;
+    protected $guarded = ['id'];
 }
