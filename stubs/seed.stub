@@ -1,0 +1,9 @@
+<?php
+namespace Database\Seeders;
+use Illuminate\Database\Seeder;
+
+class [TableName:Studly]Seeder extends Seeder {
+    public function run(){
+        \DB::table('[TableName]')->insert([SeedData]);
+    }
+}
