@@ -7,11 +7,20 @@ use LaravelSeedGenerator\Services\SeedWriter;
 use LaravelSeedGenerator\Services\TableResolver;
 
 class GenerateSeedsCommand extends Command {
-    protected $signature = 'generate:seeds {--table*=} {--class*=} {--tables-only} {--classes-only}';
+    protected $signature = 'generate:seeds {--table=*} {--class=*} {--tables-only} {--classes-only}';
 
     public function handle(){
         $classes = config('laravel-seed-generator.seed_classes');
-        $tables = config('laravel-seed-generator.seed_tables');
+        $tableConfig = config('laravel-seed-generator.seed_tables');
+
+        $tables = [];
+        foreach($tableConfig as $key => $table){
+            if(is_numeric($key)){
+                $tables[$table] = ['*'];
+            } else {
+                $tables[$key] = $table;
+            }
+        }
 
         if($this->hasOption('class')){
             $optionClasses = $this->option('class');
